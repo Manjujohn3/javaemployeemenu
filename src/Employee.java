@@ -62,6 +62,35 @@ public class Employee {
 
                 case 2:
                     System.out.println("view employee selected");
+
+                    try {
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "root", "");
+                        String sql = "SELECT `empcode`, `empname`, `designation`, `salary`, `companyname`, `phone`, `emailid`, `password` FROM `employees`";
+                        Statement stmt = con.createStatement();
+                        ResultSet rs = stmt.executeQuery(sql);
+                        while (rs.next()) {
+                            String getEmpcode = rs.getString("empcode");
+                            String getName = rs.getString("empname");
+                            String getDesignation = rs.getString("designation");
+                            String getSalary = rs.getString("salary");
+                            String getCompanyname = rs.getString("companyname");
+                            String getPhone = rs.getString("phone");
+                            String getEmail= rs.getString("emailid");
+                            String getPassword = rs.getString("password");
+                            System.out.println("empcode="+getEmpcode);
+                            System.out.println("empname="+getName);
+                            System.out.println("designation="+getDesignation);
+                            System.out.println("salary="+getSalary);
+                            System.out.println("companyname="+getCompanyname);
+                            System.out.println("phone="+getPhone);
+                            System.out.println("emailid="+getEmail);
+                            System.out.println("password="+getPassword+"\n");
+                        }
+                    }
+                    catch (Exception e) {
+                        System.out.println(e);
+                    }
                     break;
                 case 3:
                     System.out.println("search search selected");
