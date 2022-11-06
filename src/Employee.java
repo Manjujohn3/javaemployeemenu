@@ -120,16 +120,29 @@ public class Employee {
                             System.out.println("emailid="+getEmail);
                             System.out.println("password="+getPassword+"\n");
                         }
-
                     }
                     catch (Exception e ){
                         System.out.println(e);
                     }
-
                     break;
 
                 case 4:
-                    System.out.println("delete delete selected");
+                    System.out.println("delete employee selected");
+                    System.out.println("Enter the empcode : ");
+                    String empco = scanner.next();
+                    try {
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb","root","");
+                        String sql = "DELETE FROM `employees` WHERE `empcode`= " +empco;
+                        Statement stmt = con.createStatement();
+                        stmt.executeUpdate(sql);
+                        System.out.println("data deleted successfully");
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
+
+
                     break;
 
                 case 5:
