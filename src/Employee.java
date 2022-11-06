@@ -22,6 +22,42 @@ public class Employee {
             switch (choice) {
                 case 1:
                     System.out.println("insert employee selected");
+
+                    System.out.println("enter the empcode:");
+                    int empcode = scanner.nextInt();
+                    System.out.println("enter the name:");
+                    String name = scanner.next();
+                    System.out.println("enter the designtion:");
+                    String designation = scanner.next();
+                    System.out.println("enter the salary:");
+                    int salary = scanner.nextInt();
+                    System.out.println("enter the companyname:");
+                    String companyname = scanner.next();
+                    System.out.println("enter the phone:");
+                    String phone = scanner.next();
+                    System.out.println("enter the email");
+                    String email = scanner.next();
+                    System.out.println("enter the password");
+                    String password = scanner.next();
+
+                    try {
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "root", "");
+                        String sql = "INSERT INTO `employees`(`empcode`, `empname`, `designation`, `salary`, `companyname`, `phone`, `emailid`, `password`) VALUES (?,?,?,?,?,?,?,?)";
+                        PreparedStatement stmt = con.prepareStatement(sql);
+                        stmt.setInt(1, empcode);
+                        stmt.setString(2, name);
+                        stmt.setString(3, designation);
+                        stmt.setInt(4, salary);
+                        stmt.setString(5, companyname);
+                        stmt.setString(6, phone);
+                        stmt.setString(7, email);
+                        stmt.setString(8, password);
+
+                        stmt.executeUpdate();
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
                     break;
 
                 case 2:
