@@ -146,7 +146,34 @@ public class Employee {
                     break;
 
                 case 5:
-                    System.out.println("update update selected");
+                    System.out.println("update employee selected");
+                    System.out.println("Enter the empcode to be updating");
+                    empcode = scanner.nextInt();
+                    System.out.println("enter the name to be updated:");
+                    name = scanner.next();
+                    System.out.println("enter the designtion to be updated:");
+                    designation = scanner.next();
+                    System.out.println("enter the salary to be updated:");
+                    salary = scanner.nextInt();
+                    System.out.println("enter the companyname to be updated:");
+                    companyname = scanner.next();
+                    System.out.println("enter the phone to be updated:");
+                    phone = scanner.next();
+                    System.out.println("enter the email to be updated:");
+                    email = scanner.next();
+                    System.out.println("enter the password to be updated:");
+                    password = scanner.next();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "root", "");
+                        String sql = "UPDATE `employees` SET `empcode`='"+String.valueOf(empcode)+"',`empname`='"+name+"',`designation`='"+designation+"',`salary`='"+String.valueOf(salary)+"',`companyname`='"+companyname+"',`phone`='"+phone+"',`emailid`='"+email+"',`password`='"+password+"' WHERE `empcode`="+String.valueOf(empcode);
+                        Statement stmt = con.createStatement();
+                        stmt.executeUpdate(sql);
+                        System.out.println("Updated successfully");
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
                     break;
                 case 6:
                     System.out.println("Exit");
